@@ -111,12 +111,13 @@
                     this.postList = res.data;
                 })
                 .catch(err =>{
-                    consol.log("FETCH POSTLIST GET ERR.RESPONSE", err.response);
+                    console.log("FETCH POSTLIST GET ERR.RESPONSE", err.response);
                     alert(`${err.response.status} ${err.response.statusText}`)
                 });
             }
         }
     }
+
     Vue.createApp(PostListApp).mount('#counter')
 </script>
 {% endblock %}
