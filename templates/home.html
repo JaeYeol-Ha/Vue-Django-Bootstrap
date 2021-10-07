@@ -15,7 +15,7 @@
         <div class="row">
             <div v-for="post in postList" :key="post.id" class="col-lg-4 col-sm-6 mb-4">
                 <div class="portfolio-item">
-                    <a class="portfolio-link" href="`/blog/post/${post.id}/#post`">
+                    <a class="portfolio-link" :href="`/blog/post/${post.id}/#post`">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
@@ -89,35 +89,39 @@
 
 {% block extra-script %}
 <script src="https://unpkg.com/vue@next"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.js"></script>
 <script>
     const PostListApp = {
         delimiters: ['[[', ']]'],
+
         data() {
             return {
                 counter: 0
             }
         },
-        created(){
+
+        created() {
             console.log("created()...");
             this.fetchPostList();
         },
-        method: {
-            fetchPostList(){
+
+        methods: {
+            fetchPostList() {
                 console.log("fetchPostList()...");
                 axios.get('/api/post/list')
                 .then(res => {
                     console.log("FETCH POSTLIST GET RES", res);
                     this.postList = res.data;
+                    console.log(this.postList);
                 })
-                .catch(err =>{
+                .catch(err => {
                     console.log("FETCH POSTLIST GET ERR.RESPONSE", err.response);
                     alert(`${err.response.status} ${err.response.statusText}`)
                 });
-            }
-        }
+            },
+        },
     }
 
-    Vue.createApp(PostListApp).mount('#counter')
+    Vue.createApp(PostListApp).mount('#page-top')
 </script>
 {% endblock %}
