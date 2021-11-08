@@ -53,7 +53,7 @@
                 console.log("serverPage()...", category, tag);
                 if (category && tag) alert(`serverPage() both args Error: ${category} and ${tag}`);
                 else if (category) location.href = `/?category=${category}#portfolio}`;
-                else if (tag) location.href = `/?category=${tag}#portfolio}`;
+                else if (tag) location.href = `/?tag=${tag}#portfolio}`;
                 else location.href = '/#portfolio';
             }
         },
