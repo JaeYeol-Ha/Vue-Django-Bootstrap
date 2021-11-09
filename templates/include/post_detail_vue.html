@@ -49,13 +49,25 @@
                         alert(`${err.response.status} ${err.response.statusText}`)
                     });
             },
-            serverPage(category='', tag=''){
+            serverPage(category='', tag='') {
                 console.log("serverPage()...", category, tag);
                 if (category && tag) alert(`serverPage() both args Error: ${category} and ${tag}`);
                 else if (category) location.href = `/?category=${category}#portfolio}`;
                 else if (tag) location.href = `/?tag=${tag}#portfolio}`;
                 else location.href = '/#portfolio';
-            }
+            },
+            likeCount(postId) {
+                console.log("likeCount()...", postId);
+                axios.get(`/api/like/${postId}/`)
+                    .then(res => {
+                        console.log("LIKE-COUNT GET RES", res);
+                        this.post.like = res.data;
+                    })
+                    .catch(err => {
+                        console.log("FETCH LIKE-COUNT GET ERR.RESPONSE", err.response);
+                        alert(`${err.response.status} ${err.response.statusText}`)
+                    });
+            },        
         },
     }
 
